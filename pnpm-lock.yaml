@@ -17,6 +17,9 @@ importers:
       aws-cdk-lib:
         specifier: 2.173.1
         version: 2.173.1(constructs@10.4.2)
+      cdk:
+        specifier: ^2.173.2
+        version: 2.173.2
       constructs:
         specifier: ^10.0.0
         version: 10.4.2
@@ -1692,6 +1695,14 @@ packages:
       fsevents: 2.3.2
     dev: true
 
+  /aws-cdk@2.173.2:
+    resolution: {integrity: sha512-qyMU4FoRJdZDUpsOBqyRBALBjf5A2N/MaHKX9iJUkbTET+d+nR07x3ai4TcEES+8pqPFHMTKpQMRDXs9Py/15w==}
+    engines: {node: '>= 14.15.0'}
+    hasBin: true
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: false
+
   /babel-jest@29.7.0(@babel/core@7.26.0):
     resolution: {integrity: sha512-BrvGY3xZSwEcCzKvKsCi2GgHqDqsYkOP4/by5xCgIwGXQxIEh+8ew3gmrE1y7XRR6LHZIj6yLYnUi/mm2KXKBg==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -1837,6 +1848,14 @@ packages:
   /caniuse-lite@1.0.30001690:
     resolution: {integrity: sha512-5ExiE3qQN6oF8Clf8ifIDcMRCRE/dMGcETG/XGMD8/XiXm6HXQgQTh1yZYLXXpSOsEUlJm1Xr7kGULZTuGtP/w==}
     dev: true
+
+  /cdk@2.173.2:
+    resolution: {integrity: sha512-1hxu2ZmtKO8tHARjJ2gCL9WJgbxvDDDBsbuMb9+bRCu+VAOWvH/5DplJ9eJklh7IJWuvfVPTUw98qA9A/tJd9w==}
+    engines: {node: '>= 14.15.0'}
+    hasBin: true
+    dependencies:
+      aws-cdk: 2.173.2
+    dev: false
 
   /chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
@@ -2301,7 +2320,6 @@ packages:
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /fsevents@2.3.3:
