@@ -6,7 +6,10 @@
   "scripts": {
     "lint": "pnpm run --filter web lint",
     "format": "pnpm run --filter web format:check",
-    "cdk:deploy": "pnpm run --filter cdk cdk deploy",
+    "cdk:deploy": "pnpm run --filter cdk cdk deploy --all",
+    "cdk:destroy": "pnpm run --filter cdk cdk destroy --all",
+    "web:deploy": "source setup-env.sh && pnpm run --filter web build && aws s3 sync ./packages/web/dist s3://$BUCKET_NAME --delete",
+    "show:weburl": "aws cloudformation describe-stacks --stack-name FrontendStack --query 'Stacks[0].Outputs[?OutputKey==`WebsiteUrl`].OutputValue' --output text",
     "web:dev": "source ./setup-env.sh && pnpm run --filter web dev",
     "prepare": "husky install"
   },
