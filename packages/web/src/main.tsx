@@ -1,5 +1,5 @@
 import { Authenticator } from '@aws-amplify/ui-react';
-import "@aws-amplify/ui-react/styles.css";
+import '@aws-amplify/ui-react/styles.css';
 import { Amplify } from 'aws-amplify';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
