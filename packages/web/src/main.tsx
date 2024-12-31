@@ -1,4 +1,5 @@
 import { Authenticator } from '@aws-amplify/ui-react';
+import "@aws-amplify/ui-react/styles.css";
 import { Amplify } from 'aws-amplify';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -8,9 +9,9 @@ import './index.css';
 Amplify.configure({
   Auth: {
     Cognito: {
-      userPoolId: import.meta.env.REACT_APP_USER_POOL_ID!,
-      userPoolClientId: import.meta.env.REACT_APP_USER_POOL_CLIENT_ID!,
-      identityPoolId: import.meta.env.REACT_APP_IDENTITY_POOL_ID!,
+      userPoolId: import.meta.env.VITE_USER_POOL_ID!,
+      userPoolClientId: import.meta.env.VITE_USER_POOL_CLIENT_ID!,
+      identityPoolId: import.meta.env.VITE_IDENTITY_POOL_ID!,
     },
   },
 });
