@@ -26,7 +26,14 @@ export class FrontendStack extends cdk.Stack {
       allowedOrigins: ['*'],
       allowedHeaders: ['*'],
     });
-
+    destinationBucket.addToResourcePolicy(
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        principals: [new iam.AccountRootPrincipal()],
+        actions: ['s3:*'],
+        resources: [destinationBucket.bucketArn, `${destinationBucket.bucketArn}/*`],
+      })
+    );
     const distribution = new cloudfront.Distribution(this, 'Distribution', {
       defaultRootObject: 'index.html',
       defaultBehavior: {
