@@ -1,7 +1,7 @@
-import * as cdk from "aws-cdk-lib";
-import * as cognito from "aws-cdk-lib/aws-cognito";
-import * as iam from "aws-cdk-lib/aws-iam";
-import { Construct } from "constructs";
+import * as cdk from 'aws-cdk-lib';
+import * as cognito from 'aws-cdk-lib/aws-cognito';
+import * as iam from 'aws-cdk-lib/aws-iam';
+import { Construct } from 'constructs';
 
 export class AuthStack extends cdk.Stack {
   public readonly userPool: cognito.UserPool;
@@ -10,17 +10,17 @@ export class AuthStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const userPool = new cognito.UserPool(this, "UserPool", {
+    const userPool = new cognito.UserPool(this, 'UserPool', {
       selfSignUpEnabled: true,
       signInAliases: {
         email: true,
       },
     });
-    const userPoolClient = new cognito.UserPoolClient(this, "UserPoolClient", {
+    const userPoolClient = new cognito.UserPoolClient(this, 'UserPoolClient', {
       userPool: userPool,
     });
 
-    const identityPool = new cognito.CfnIdentityPool(this, "IdentityPool", {
+    const identityPool = new cognito.CfnIdentityPool(this, 'IdentityPool', {
       allowUnauthenticatedIdentities: false,
       cognitoIdentityProviders: [
         {
@@ -29,49 +29,41 @@ export class AuthStack extends cdk.Stack {
         },
       ],
     });
-    const authenticatedRole = new iam.Role(
-      this,
-      "CognitoDefaultAuthenticatedRole",
-      {
-        assumedBy: new iam.FederatedPrincipal(
-          "cognito-identity.amazonaws.com",
-          {
-            StringEquals: {
-              "cognito-identity.amazonaws.com:aud": identityPool.ref,
-            },
-            "ForAnyValue:StringLike": {
-              "cognito-identity.amazonaws.com:amr": "authenticated",
-            },
+    const authenticatedRole = new iam.Role(this, 'CognitoDefaultAuthenticatedRole', {
+      assumedBy: new iam.FederatedPrincipal(
+        'cognito-identity.amazonaws.com',
+        {
+          StringEquals: {
+            'cognito-identity.amazonaws.com:aud': identityPool.ref,
           },
-          "sts:AssumeRoleWithWebIdentity"
-        ),
-      }
-    );
+          'ForAnyValue:StringLike': {
+            'cognito-identity.amazonaws.com:amr': 'authenticated',
+          },
+        },
+        'sts:AssumeRoleWithWebIdentity'
+      ),
+    });
     authenticatedRole.addManagedPolicy(
-      iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonTranscribeFullAccess")
+      iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonTranscribeFullAccess')
     );
 
-    new cognito.CfnIdentityPoolRoleAttachment(
-      this,
-      "IdentityPoolRoleAttachment",
-      {
-        identityPoolId: identityPool.ref,
-        roles: {
-          authenticated: authenticatedRole.roleArn,
-        },
-      }
-    );
+    new cognito.CfnIdentityPoolRoleAttachment(this, 'IdentityPoolRoleAttachment', {
+      identityPoolId: identityPool.ref,
+      roles: {
+        authenticated: authenticatedRole.roleArn,
+      },
+    });
 
     this.userPool = userPool;
     this.userPoolClient = userPoolClient;
 
-    new cdk.CfnOutput(this, "UserPoolId", {
+    new cdk.CfnOutput(this, 'UserPoolId', {
       value: userPool.userPoolId,
     });
-    new cdk.CfnOutput(this, "UserPoolClientId", {
+    new cdk.CfnOutput(this, 'UserPoolClientId', {
       value: userPoolClient.userPoolClientId,
     });
-    new cdk.CfnOutput(this, "IdentityPoolId", {
+    new cdk.CfnOutput(this, 'IdentityPoolId', {
       value: identityPool.ref,
     });
   }
