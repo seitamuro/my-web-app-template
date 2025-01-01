@@ -21,3 +21,10 @@ cd package/web
 pnpm run format
 pnpm run lint:fix
 ```
+
+# アプリの削除
+
+```
+pnpm run web:remove
+pnpm run cdk:destroy
+```
