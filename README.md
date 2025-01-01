@@ -28,3 +28,12 @@ pnpm run lint:fix
 pnpm run web:remove
 pnpm run cdk:destroy
 ```
+
+# ローカルのAPIサーバーに接続する
+
+```
+pnpm run local-server
+pnpm run web:local
+```
+
+上記のコマンドをそれぞれ別ターミナルで実行してください。
