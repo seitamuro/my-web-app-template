@@ -15,6 +15,7 @@
   "dependencies": {
     "@aws-amplify/ui-react": "^6.8.0",
     "aws-amplify": "^6.11.0",
+    "shared": "workspace:*",
     "axios": "^1.7.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
