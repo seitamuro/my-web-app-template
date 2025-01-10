@@ -1,10 +1,19 @@
-import { createRoute, RouteHandler } from '@hono/zod-openapi';
+import { createRoute, RouteHandler, z } from '@hono/zod-openapi';
 import { ErrorResponseSchema, MessageSchema } from 'shared';
 
 export const getHelloAuthRoute = createRoute({
   path: '/',
   method: 'get',
   description: 'Returns a hello message',
+  security: [{ Authorization: [] }],
+  request: {
+    headers: z.object({
+      Authorization: z.string().openapi({
+        description: 'idToken',
+        example: '<idToken>',
+      }),
+    }),
+  },
   responses: {
     200: {
       description: 'OK',
