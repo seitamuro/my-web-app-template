@@ -1,3 +1,4 @@
+import { CognitoIdTokenPayload } from 'aws-jwt-verify/jwt-model';
 import { Hono } from 'hono';
 import { handle } from 'hono/aws-lambda';
 import { cors } from 'hono/cors';
@@ -6,7 +7,7 @@ import { api } from './api';
 
 export type Env = {
   Variables: {
-    idTokenPayload: string;
+    idTokenPayload: CognitoIdTokenPayload;
   };
 };
 

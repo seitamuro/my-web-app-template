@@ -4,6 +4,7 @@ import { echoApi } from './echo';
 import { helloApi } from './hello';
 import { helloAuthApi } from './hello-auth';
 import { timeApi } from './time';
+import { userInfoApi } from './user-info';
 
 export const api = new OpenAPIHono();
 
@@ -20,6 +21,7 @@ api
   .route('/hello-auth', helloAuthApi)
   .route('/time', timeApi)
   .route('/echo', echoApi)
+  .route('/user-info', userInfoApi)
   .doc('/specification', {
     openapi: '3.0.3',
     info: {
