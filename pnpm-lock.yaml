@@ -79,6 +79,9 @@ importers:
 
   packages/shared:
     dependencies:
+      '@hono/zod-openapi':
+        specifier: ^0.18.3
+        version: 0.18.3(hono@4.6.15)(zod@3.24.1)
       eslint:
         specifier: ^9.17.0
         version: 9.17.0

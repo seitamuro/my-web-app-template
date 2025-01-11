@@ -1,5 +1,5 @@
-import { createRoute, RouteHandler, z } from '@hono/zod-openapi';
-import { MessageSchema, UserInfoSchema } from 'shared';
+import { createRoute, RouteHandler } from '@hono/zod-openapi';
+import { AuthorizationHeaderScheme, MessageSchema, UserInfoSchema } from 'shared';
 import { Env } from '../../index';
 
 export const getUserInfoRoute = createRoute({
@@ -7,12 +7,7 @@ export const getUserInfoRoute = createRoute({
   method: 'get',
   security: [{ Authorization: [] }],
   request: {
-    headers: z.object({
-      Authorization: z.string().openapi({
-        description: 'idToken',
-        example: '<idToken>',
-      }),
-    }),
+    headers: AuthorizationHeaderScheme,
   },
   responses: {
     200: {
